@@ -1,0 +1,1401 @@
+@charset "UTF-8";
+
+#rcon-page-console .header-mid-col {
+    text-align: center;
+    padding-top: 3rem;
+    font-size: 1.2rem;
+}
+
+    #rcon-page-console .header-mid-col .server-info-item {
+        opacity: .5;
+        margin-left: 1.5rem;
+    }
+
+    #rcon-page-console .header-mid-col .server-info-value {
+        opacity: 1;
+        margin-left: .6rem;
+    }
+
+    #rcon-page-console .header-mid-col .btn-console-refresh-server-infos {
+        padding: .2rem .4rem;
+        font-size: 1rem;
+    }
+
+#rcon-page-console .console-content-col {
+    display: block;
+    max-height: 100%;
+    height: 100%;
+}
+
+    #rcon-page-console .console-content-col .console-row-console {
+        display: block;
+        height: calc(100% - 7.5rem - 6.5rem);
+        max-height: calc(100% - 7.5rem - 6.5rem);
+    }
+
+        #rcon-page-console .console-content-col .console-row-console .console-players-list-light {
+            position: relative;
+            display: inline-block;
+            height: 100%;
+            max-height: 100%;
+            width: 14%;
+            margin-right: 2rem;
+            outline: 0;
+            vertical-align: top;
+        }
+
+            #rcon-page-console .console-content-col .console-row-console .console-players-list-light #light-players-array-search-field {
+                margin-bottom: .5rem;
+            }
+
+            #rcon-page-console .console-content-col .console-row-console .console-players-list-light #console-players-list-light-array {
+                position: relative;
+                display: block;
+                height: calc(100% - 3.2rem);
+                max-height: calc(100% - 3.2rem);
+                width: 100%;
+                overflow: scroll;
+            }
+
+                #rcon-page-console .console-content-col .console-row-console .console-players-list-light #console-players-list-light-array tbody tr .fa-ellipsis-v {
+                    opacity: 0;
+                }
+
+                #rcon-page-console .console-content-col .console-row-console .console-players-list-light #console-players-list-light-array tbody tr:hover .fa-ellipsis-v {
+                    opacity: 1;
+                    cursor: pointer;
+                }
+
+        #rcon-page-console .console-content-col .console-row-console .console-wrapper {
+            position: relative;
+            display: inline-block;
+            height: 100%;
+            max-height: 100%;
+            width: calc(86% - 2rem);
+        }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper .dropdown-chat-filters {
+                position: absolute;
+                left: 0;
+                top: calc(100% - 3rem);
+                width: 3rem;
+                height: 3rem;
+                z-index: 10;
+            }
+
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper .dropdown-chat-filters #btn-chat-filters {
+                    display: flex;
+                    width: 3rem;
+                    height: 3rem;
+                    background-color: var(--blue);
+                    align-items: center;
+                    justify-content: center;
+                    opacity: .5;
+                }
+
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper .dropdown-chat-filters #btn-chat-filters:hover {
+                        opacity: 1;
+                        cursor: pointer;
+                    }
+
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper .dropdown-chat-filters .dropdown-item {
+                    padding: 0;
+                }
+
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper .dropdown-chat-filters .console-chat-filter {
+                    display: inline-block;
+                    width: 100%;
+                    padding: 0.25rem 1rem;
+                }
+
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper .dropdown-chat-filters .console-chat-filter:before {
+                        content: "\f00c";
+                        font-family: "Font Awesome 5 Free";
+                        font-size: 1.2rem;
+                        font-weight: 900;
+                        margin-right: .5rem;
+                    }
+
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper .dropdown-chat-filters .console-chat-filter.no-check:before {
+                        opacity: 0;
+                    }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat,
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console,
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity {
+                position: absolute;
+                display: block;
+                width: calc(50% - .5rem);
+                height: 100%;
+                max-height: 100%;
+                box-sizing: border-box;
+                z-index: 1;
+                font-size: 1.2rem;
+                font-family: "Courier New";
+                border: #e9e9e9 1px solid;
+                overflow: auto;
+            }
+
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat .console-load-more,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console .console-load-more,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity .console-load-more {
+                    z-index: 1;
+                    user-select: none;
+                    margin: 0;
+                    text-align: center;
+                    color: white;
+                    background-color: #2c3e50;
+                    max-height: 2rem;
+                }
+
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat .console-load-more:hover,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console .console-load-more:hover,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity .console-load-more:hover {
+                        background-color: #007bff;
+                    }
+
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat .console-load-more .console-load-more-spinner,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console .console-load-more .console-load-more-spinner,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity .console-load-more .console-load-more-spinner {
+                        display: none;
+                    }
+
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #console-content,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #chat-content,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #activity-content,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #console-content,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #chat-content,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #activity-content,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #console-content,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #chat-content,
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #activity-content {
+                    z-index: 1;
+                    margin: 0;
+                    padding: 1rem;
+                    background: transparent;
+                }
+
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #console-content .console-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #chat-content .console-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #activity-content .console-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #console-content .console-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #chat-content .console-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #activity-content .console-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #console-content .console-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #chat-content .console-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #activity-content .console-line {
+                        z-index: 1;
+                        position: relative;
+                        padding: 0;
+                        background: transparent;
+                    }
+
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #console-content .console-line .tag-team,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #chat-content .console-line .tag-team,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #activity-content .console-line .tag-team,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #console-content .console-line .tag-team,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #chat-content .console-line .tag-team,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #activity-content .console-line .tag-team,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #console-content .console-line .tag-team,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #chat-content .console-line .tag-team,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #activity-content .console-line .tag-team {
+                            color: #0da9c1;
+                        }
+
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #console-content .console-line .tag-console,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #chat-content .console-line .tag-console,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #activity-content .console-line .tag-console,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #console-content .console-line .tag-console,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #chat-content .console-line .tag-console,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #activity-content .console-line .tag-console,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #console-content .console-line .tag-console,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #chat-content .console-line .tag-console,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #activity-content .console-line .tag-console {
+                            color: #ab002f;
+                        }
+
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #console-content .console-line .tag-poker,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #chat-content .console-line .tag-poker,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #activity-content .console-line .tag-poker,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #console-content .console-line .tag-poker,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #chat-content .console-line .tag-poker,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #activity-content .console-line .tag-poker,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #console-content .console-line .tag-poker,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #chat-content .console-line .tag-poker,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #activity-content .console-line .tag-poker {
+                            color: green;
+                        }
+
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #console-content .console-line .context-menu-chat,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #chat-content .console-line .context-menu-chat,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #activity-content .console-line .context-menu-chat,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #console-content .console-line .context-menu-chat,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #chat-content .console-line .context-menu-chat,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #activity-content .console-line .context-menu-chat,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #console-content .console-line .context-menu-chat,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #chat-content .console-line .context-menu-chat,
+                        #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #activity-content .console-line .context-menu-chat {
+                            cursor: pointer;
+                            text-decoration: underline;
+                        }
+
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #console-content .activity-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #chat-content .activity-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat #activity-content .activity-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #console-content .activity-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #chat-content .activity-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console #activity-content .activity-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #console-content .activity-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #chat-content .activity-line,
+                    #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity #activity-content .activity-line {
+                        z-index: 1;
+                        border-top: #2c3e50 1px dashed;
+                        position: relative;
+                        padding: .4rem 0 .4rem 0;
+                        background: transparent;
+                    }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console,
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity {
+                right: 0px;
+            }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console,
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat {
+                display: block;
+            }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity {
+                display: none;
+            }
+
+                #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat:before, #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console:before, #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity:before {
+                    content: "";
+                    position: absolute;
+                    display: flex;
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: -1;
+                    color: #f1f1f1;
+                    font-size: 8rem;
+                    font-weight: bold;
+                    font-family: "lato";
+                    letter-spacing: .2rem;
+                }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat:before {
+                content: "Chat";
+            }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-chat .chat-filters {
+                position: absolute;
+                top: 100%;
+                left: 100%;
+            }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console:before {
+                content: "Console";
+            }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console:after {
+                display: none;
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                background-color: #FF00007F;
+                color: white;
+                padding: 2rem 1rem;
+                content: "The console has been disabled to avoid application hanging. Your server is currently spamming console lines. Please scroll up to see the console lines and try to fix the issue on your server to restore the console. Most of the time it is caused by plugins not being up to date.";
+            }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-console.disabled:after {
+                display: block;
+            }
+
+            #rcon-page-console .console-content-col .console-row-console .console-wrapper #console-activity:before {
+                content: "Activity";
+            }
+
+    #rcon-page-console .console-content-col .console-row-filters {
+        padding-left: calc(14% + 2rem);
+        margin: 1rem 0 1rem 0;
+        position: relative;
+    }
+
+        #rcon-page-console .console-content-col .console-row-filters .form-inline {
+            display: inline-block;
+        }
+
+        #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-left {
+            float: left;
+            margin-right: 1rem;
+        }
+
+        #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-right,
+        #rcon-page-console .console-content-col .console-row-filters #console-fullscreen-switcher,
+        #rcon-page-console .console-content-col .console-row-filters #chk-autoscroll {
+            float: right;
+        }
+
+            #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-left input,
+            #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-left button,
+            #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-right input,
+            #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-right button {
+                vertical-align: middle;
+                height: 3rem;
+            }
+
+            #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-left #btn-console-chat-search,
+            #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-right #btn-console-chat-search {
+                margin-left: -.8rem;
+            }
+
+                #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-left #btn-console-chat-search:focus,
+                #rcon-page-console .console-content-col .console-row-filters .console-col-sub-console-right #btn-console-chat-search:focus {
+                    -webkit-box-shadow: none !important;
+                    box-shadow: none !important;
+                }
+
+        #rcon-page-console .console-content-col .console-row-filters .console-switcher-tab,
+        #rcon-page-console .console-content-col .console-row-filters #console-fullscreen-switcher,
+        #rcon-page-console .console-content-col .console-row-filters #chk-autoscroll {
+            display: inline-block;
+            user-select: none;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin: -1rem 0 0 .2rem;
+            padding: .8rem 1.5rem;
+            background-color: #e9e9e9;
+        }
+
+            #rcon-page-console .console-content-col .console-row-filters .console-switcher-tab:hover,
+            #rcon-page-console .console-content-col .console-row-filters #console-fullscreen-switcher:hover,
+            #rcon-page-console .console-content-col .console-row-filters #chk-autoscroll:hover {
+                cursor: pointer;
+            }
+
+        #rcon-page-console .console-content-col .console-row-filters #console-fullscreen-switcher,
+        #rcon-page-console .console-content-col .console-row-filters #chk-autoscroll {
+            font-size: 2rem;
+            padding: 0.2rem 1.5rem;
+        }
+
+        #rcon-page-console .console-content-col .console-row-filters .console-switcher-tab-current {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        #rcon-page-console .console-content-col .console-row-filters .console-switcher-tab[data-id="chat"] {
+            display: none;
+        }
+
+        #rcon-page-console .console-content-col .console-row-filters #console-chat-search-dropdown {
+            min-width: 100%;
+        }
+
+        #rcon-page-console .console-content-col .console-row-filters #input-console-chat-search {
+            min-width: 150px;
+            max-width: 30%;
+            display: inline-block !important;
+        }
+
+    #rcon-page-console .console-content-col .console-row-cmds {
+        display: flex;
+        flex-direction: row;
+        height: 7.5rem;
+        max-height: 7.5rem;
+        padding-left: calc(14% + 2rem);
+    }
+
+        #rcon-page-console .console-content-col .console-row-cmds .console-chatbar-container,
+        #rcon-page-console .console-content-col .console-row-cmds .console-cmdbar-container {
+            display: flex;
+            flex-direction: column;
+            flex: 50%;
+        }
+
+        #rcon-page-console .console-content-col .console-row-cmds .console-cmdbar-container {
+            padding-left: .7rem;
+        }
+
+        #rcon-page-console .console-content-col .console-row-cmds .chatbar-header,
+        #rcon-page-console .console-content-col .console-row-cmds .cmdbar-header {
+            font-size: 1.2rem;
+            padding-bottom: 0.5rem;
+        }
+
+        #rcon-page-console .console-content-col .console-row-cmds .chatbar-bar,
+        #rcon-page-console .console-content-col .console-row-cmds .cmdbar-bar {
+            display: flex;
+            flex-direction: row;
+        }
+
+            #rcon-page-console .console-content-col .console-row-cmds .chatbar-bar button,
+            #rcon-page-console .console-content-col .console-row-cmds .cmdbar-bar button {
+                white-space: nowrap;
+            }
+
+@media screen and (max-width: 992px) {
+    .console-players-list-light {
+        display: none !important;
+    }
+
+    .console-row-filters {
+        padding-left: 0 !important;
+    }
+
+    #console-filters-modal #add-filter-form #console-filters-modal-status {
+        margin-top: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    #input-console-chat-search {
+        min-width: 50px !important;
+    }
+
+    #rcon-page-console .console-content-col .console-row-cmds {
+        flex-direction: column;
+        padding-left: 0;
+    }
+
+        #rcon-page-console .console-content-col .console-row-cmds .console-chatbar-container,
+        #rcon-page-console .console-content-col .console-row-cmds .console-cmdbar-container {
+            flex-direction: row;
+            flex: 1;
+        }
+
+        #rcon-page-console .console-content-col .console-row-cmds .console-cmdbar-container {
+            padding-left: 0;
+        }
+
+        #rcon-page-console .console-content-col .console-row-cmds .chatbar-bar,
+        #rcon-page-console .console-content-col .console-row-cmds .cmdbar-bar {
+            flex: 1;
+        }
+
+            #rcon-page-console .console-content-col .console-row-cmds .chatbar-bar button,
+            #rcon-page-console .console-content-col .console-row-cmds .cmdbar-bar button {
+                height: calc(1.5em + 0.75rem + 2px);
+                max-height: calc(1.5em + 0.75rem + 2px);
+            }
+}
+
+#rcon-page-players .header-mid-col {
+    text-align: center;
+    padding-top: 3rem;
+    font-size: 1.2rem;
+}
+
+    #rcon-page-players .header-mid-col .server-info-item {
+        opacity: .5;
+        margin-left: 1.5rem;
+    }
+
+    #rcon-page-players .header-mid-col .server-info-value {
+        opacity: 1;
+        margin-left: .6rem;
+    }
+
+    #rcon-page-players .header-mid-col .btn-console-refresh-server-infos {
+        padding: .2rem .4rem;
+        font-size: 1rem;
+    }
+
+#rcon-page-players .players-content-col {
+    display: block;
+    max-height: 100%;
+    height: 100%;
+}
+
+    #rcon-page-players .players-content-col:focus {
+        outline: 0;
+    }
+
+    #rcon-page-players .players-content-col #players-array-wrapper {
+        position: relative;
+        display: block;
+        height: 60%;
+        max-height: 60%;
+        width: 100%;
+        overflow: scroll;
+    }
+
+    #rcon-page-players .players-content-col #players-off-array-wrapper {
+        position: relative;
+        display: block;
+        height: calc(40% - 7rem);
+        max-height: calc(40% - 7rem);
+        width: 100%;
+        overflow: scroll;
+    }
+
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr .fa-ellipsis-v,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr .fa-ellipsis-v {
+        opacity: 0;
+    }
+
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr:hover .fa-ellipsis-v,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr:hover .fa-ellipsis-v {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr:hover .player-threat-link,
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr:hover .player-comment-link,
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr:hover .player-oldnames-link,
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr:hover .player-strikes-link,
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr:hover .player-reports-link,
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr:hover .player-team-link,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr:hover .player-threat-link,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr:hover .player-comment-link,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr:hover .player-oldnames-link,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr:hover .player-strikes-link,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr:hover .player-reports-link,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr:hover .player-team-link {
+        text-underline-offset: .2rem;
+        text-decoration: underline;
+    }
+
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr.striked-text,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr.striked-text {
+        text-decoration: line-through;
+    }
+
+    #rcon-page-players .players-content-col #playeronl-dtable tbody tr img,
+    #rcon-page-players .players-content-col #playeroff-dtable tbody tr img {
+        margin-right: .5rem;
+        vertical-align: sub;
+    }
+
+    #rcon-page-players .players-content-col .players-filter {
+        position: relative;
+        display: block;
+        height: 7rem;
+        max-height: 7rem;
+        padding: 2rem 0 1rem 1rem;
+        font-size: 1.2rem;
+    }
+
+        #rcon-page-players .players-content-col .players-filter .players-offline {
+            float: left;
+        }
+
+        #rcon-page-players .players-content-col .players-filter #players-array-search-field,
+        #rcon-page-players .players-content-col .players-filter #btn-search-offline {
+            float: right;
+        }
+
+        #rcon-page-players .players-content-col .players-filter #btn-search-offline {
+            margin: 0 2rem 0 2rem;
+        }
+
+        #rcon-page-players .players-content-col .players-filter #players-array-search-field {
+            transition: width 200ms;
+        }
+
+            #rcon-page-players .players-content-col .players-filter #players-array-search-field.form-control {
+                display: inline-block;
+                width: 20%;
+            }
+
+            #rcon-page-players .players-content-col .players-filter #players-array-search-field:focus {
+                width: 50%;
+            }
+
+        #rcon-page-players .players-content-col .players-filter #grip-resize-tables {
+            position: absolute;
+            left: calc(50% - 2.5rem);
+            top: 3rem;
+            display: inline-block;
+            width: 3%;
+            height: .5rem;
+            border-top: #007bff 1px solid;
+            border-bottom: #007bff 1px solid;
+        }
+
+            #rcon-page-players .players-content-col .players-filter #grip-resize-tables:hover {
+                cursor: n-resize;
+            }
+
+    #rcon-page-players .players-content-col .player-threat-link:hover,
+    #rcon-page-players .players-content-col .player-comment-link:hover,
+    #rcon-page-players .players-content-col .player-oldnames-link:hover,
+    #rcon-page-players .players-content-col .player-strikes-link:hover,
+    #rcon-page-players .players-content-col .player-reports-link:hover,
+    #rcon-page-players .players-content-col .player-team-link:hover {
+        cursor: pointer;
+    }
+
+    #rcon-page-players .players-content-col .comment-marker {
+        font-size: 1.2rem;
+    }
+
+#rcon-page-players #btn-open-livemap {
+    display: none;
+    padding-left: 0;
+}
+
+@media screen and (max-width: 992px) {
+    .server-infos-col {
+        position: fixed;
+        width: 100%;
+        display: block;
+        margin-top: -3rem;
+        font-size: .8rem !important;
+        padding: 0;
+    }
+
+        .server-infos-col button {
+            display: none;
+        }
+
+    #rcon-page-players .players-content-col .players-filter #players-array_filter input {
+        min-width: 50px;
+        max-width: 80px !important;
+        display: inline !important;
+    }
+
+    #rcon-page-players .players-content-col .players-filter #btn-search-offline {
+        margin: 0 !important;
+    }
+
+    #rcon-page-players .players-content-col .players-filter .mobile-only {
+        display: inline !important;
+    }
+}
+
+#rcon-page-cmds .section-row-content {
+    max-height: 100%;
+    height: 100%;
+}
+
+    #rcon-page-cmds .section-row-content .cmds-content-col {
+        display: block;
+        max-height: 100%;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col::-webkit-scrollbar {
+            display: none;
+        }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col .btn-cmds-new-triggered-cmd-edit {
+            display: none;
+        }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col .btn-cmds-new-scheduled-cmd-edit {
+            display: none;
+        }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col #btn-cmds-new-scheduled-cmd-add,
+        #rcon-page-cmds .section-row-content .cmds-content-col #btn-cmds-new-scheduled-cmd-add-global,
+        #rcon-page-cmds .section-row-content .cmds-content-col #btn-cmds-new-triggered-cmd-add,
+        #rcon-page-cmds .section-row-content .cmds-content-col #btn-cmds-new-triggered-cmd-add-global {
+            width: 100%;
+        }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col #triggered-cmds-array-wrapper,
+        #rcon-page-cmds .section-row-content .cmds-content-col #scheduled-cmds-array-wrapper {
+            overflow-x: scroll;
+        }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col #scheduled-cmds-array td,
+        #rcon-page-cmds .section-row-content .cmds-content-col #triggered-cmds-array td {
+            vertical-align: middle;
+        }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col #add-scheduled-cmd-form #cmds-new-scheduled-cmd-status {
+            margin-top: 1rem;
+        }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col #add-scheduled-cmd-form .days-checks-container {
+            display: block;
+            width: 100%;
+            height: calc(1.5em + 0.75rem + 2px);
+        }
+
+            #rcon-page-cmds .section-row-content .cmds-content-col #add-scheduled-cmd-form .days-checks-container label {
+                margin: .5rem;
+                vertical-align: super;
+            }
+
+            #rcon-page-cmds .section-row-content .cmds-content-col #add-scheduled-cmd-form .days-checks-container input {
+                margin: .5rem;
+            }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col .little-gutters {
+            margin: 0;
+        }
+
+            #rcon-page-cmds .section-row-content .cmds-content-col .little-gutters .control-group {
+                padding: 0 .5rem 0 0;
+            }
+
+        #rcon-page-cmds .section-row-content .cmds-content-col .command-type-container {
+            padding: 3rem 0 1rem 0;
+            width: 100%;
+        }
+
+            #rcon-page-cmds .section-row-content .cmds-content-col .command-type-container .cmds-type-title {
+                margin: 0 0 4rem 0;
+            }
+
+                #rcon-page-cmds .section-row-content .cmds-content-col .command-type-container .cmds-type-title i {
+                    margin-right: 1.5rem;
+                }
+
+            #rcon-page-cmds .section-row-content .cmds-content-col .command-type-container .cmds-add-cmd-title {
+                margin: 4rem 0 2rem 0;
+                color: #007bff;
+            }
+
+@media screen and (max-width: 992px) {
+    .cmds-type-title {
+        margin: 0 0 2rem 0 !important;
+    }
+}
+
+#rcon-page-server .server-header-col .server-tab-switcher {
+    display: inline-block;
+    font-size: 1.5rem;
+    padding: .3rem .8rem;
+    margin: 2.5rem 2rem 0 0;
+    background-color: var(--secondary);
+    color: white;
+}
+
+    #rcon-page-server .server-header-col .server-tab-switcher:hover {
+        background-color: var(--primary);
+        cursor: pointer;
+    }
+
+#rcon-page-server .server-header-col .server-tab-current {
+    background-color: var(--primary);
+}
+
+#rcon-page-server .server-content-col {
+    display: block;
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+    padding-top: 1.5rem;
+    border-top: #e9e9e9 1px solid;
+}
+
+#rcon-page-server .server-tab {
+    max-height: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+#rcon-page-server .server-tab-stats {
+    display: none;
+    padding: 0;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+}
+
+    #rcon-page-server .server-tab-stats::-webkit-scrollbar {
+        display: none;
+    }
+
+    #rcon-page-server .server-tab-stats .stats-graphs-row {
+        display: none;
+    }
+
+        #rcon-page-server .server-tab-stats .stats-graphs-row .stats-graph-container {
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+            #rcon-page-server .server-tab-stats .stats-graphs-row .stats-graph-container .graph-controls {
+                font-size: 1.2rem;
+                margin-top: 1rem;
+            }
+
+                #rcon-page-server .server-tab-stats .stats-graphs-row .stats-graph-container .graph-controls .stats-control-scale-current {
+                    background-color: #2c3e50;
+                }
+
+#rcon-page-server .server-tab-plugins {
+    display: none;
+}
+
+    #rcon-page-server .server-tab-plugins .server-plugins-header {
+        display: block;
+        height: 7rem;
+        max-height: 7rem;
+        padding: 1rem 0 2rem;
+    }
+
+        #rcon-page-server .server-tab-plugins .server-plugins-header .rcon-section-title {
+            display: inline;
+            margin-right: 2rem;
+        }
+
+        #rcon-page-server .server-tab-plugins .server-plugins-header .rcon-section-title-hint {
+            opacity: .5;
+        }
+
+        #rcon-page-server .server-tab-plugins .server-plugins-header #btn-refresh-plugins,
+        #rcon-page-server .server-tab-plugins .server-plugins-header #btn-download-rao-plugin {
+            float: right;
+        }
+
+        #rcon-page-server .server-tab-plugins .server-plugins-header #btn-refresh-plugins {
+            margin-left: 1rem;
+        }
+
+    #rcon-page-server .server-tab-plugins .server-plugins-tab-switcher {
+        display: inline-block;
+        font-size: 1.2rem;
+        padding: .3rem .8rem;
+        margin: 0 2rem 2rem 0;
+        background-color: var(--secondary);
+        color: white;
+    }
+
+        #rcon-page-server .server-tab-plugins .server-plugins-tab-switcher:hover {
+            background-color: var(--primary);
+            cursor: pointer;
+        }
+
+    #rcon-page-server .server-tab-plugins .server-plugins-tab-current {
+        background-color: var(--primary);
+    }
+
+    #rcon-page-server .server-tab-plugins #server-plugins-tab-list,
+    #rcon-page-server .server-tab-plugins #server-plugins-tab-perms {
+        display: none;
+    }
+
+    #rcon-page-server .server-tab-plugins #server-plugins-tab-perms {
+        padding-top: 1rem;
+    }
+
+    #rcon-page-server .server-tab-plugins #plugins-array-wrapper {
+        position: relative;
+        display: block;
+        height: calc(100% - 12.5rem);
+        max-height: calc(100% - 16.5rem);
+        width: 100%;
+        overflow: auto;
+    }
+
+    #rcon-page-server .server-tab-plugins #server-plugins-tab-perms {
+        height: calc(100% - 5rem);
+        overflow: hidden auto;
+    }
+
+        #rcon-page-server .server-tab-plugins #server-plugins-tab-perms .oxide-remove-user-from-group {
+            color: var(--primary);
+            margin: 0 .5rem;
+        }
+
+            #rcon-page-server .server-tab-plugins #server-plugins-tab-perms .oxide-remove-user-from-group:hover {
+                color: red;
+                cursor: pointer;
+            }
+
+    #rcon-page-server .server-tab-plugins #server-plugins-tab-list {
+        height: calc(100% - 5rem);
+    }
+
+        #rcon-page-server .server-tab-plugins #server-plugins-tab-list #plg-mgr-version,
+        #rcon-page-server .server-tab-plugins #server-plugins-tab-list #plugins-outdated-notice {
+            font-size: 1.5rem;
+        }
+
+        #rcon-page-server .server-tab-plugins #server-plugins-tab-list #plugins-outdated-notice {
+            color: red;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+
+            #rcon-page-server .server-tab-plugins #server-plugins-tab-list #plugins-outdated-notice .loader-anim {
+                height: 40px;
+            }
+
+    #rcon-page-server .server-tab-plugins .oxide-perms-groups-perms,
+    #rcon-page-server .server-tab-plugins .oxide-perms-groups-members {
+        overflow: auto;
+    }
+
+    #rcon-page-server .server-tab-plugins .oxide-groups-members-table .min-col,
+    #rcon-page-server .server-tab-plugins .oxide-groups-perms-table .min-col {
+        width: 1px;
+    }
+
+    #rcon-page-server .server-tab-plugins .oxide-groups-members-table td,
+    #rcon-page-server .server-tab-plugins .oxide-groups-perms-table td {
+        vertical-align: middle;
+    }
+
+    #rcon-page-server .server-tab-plugins .oxide-groups-members-table button,
+    #rcon-page-server .server-tab-plugins .oxide-groups-perms-table button {
+        padding: 0;
+    }
+
+#rcon-page-server .server-tab-settings {
+    display: block;
+}
+
+    #rcon-page-server .server-tab-settings .row-server-settings-root {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        max-height: 100%;
+    }
+
+        #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-unitary {
+            flex: 0 0 auto;
+            flex-direction: row;
+            width: 100%;
+            min-height: 6.5rem;
+        }
+
+            #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-unitary #btn-restart-server {
+                font-size: 2rem;
+                margin-right: 1rem;
+            }
+
+                #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-unitary #btn-restart-server i {
+                    margin: 0;
+                }
+
+        #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-editor {
+            flex: 10;
+            width: 100%;
+        }
+
+            #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-editor .cfg-editor-container {
+                display: flex;
+                flex-direction: column;
+            }
+
+                #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-editor .cfg-editor-container .cfg-editor-title {
+                    flex: 1;
+                    padding: 0 0 1rem 0;
+                }
+
+                    #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-editor .cfg-editor-container .cfg-editor-title label {
+                        font-size: 1.5rem;
+                    }
+
+                    #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-editor .cfg-editor-container .cfg-editor-title button {
+                        margin: 0 .5rem .5rem 0;
+                    }
+
+                    #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-editor .cfg-editor-container .cfg-editor-title .title-hint-server-cfg-date {
+                        opacity: .5;
+                    }
+
+                    #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-editor .cfg-editor-container .cfg-editor-title .server-cfg-unsaved-change {
+                        display: none;
+                        color: red;
+                    }
+
+                #rcon-page-server .server-tab-settings .row-server-settings-root .row-server-settings-editor .cfg-editor-container #server-cfg-file {
+                    flex: 20;
+                }
+
+        #rcon-page-server .server-tab-settings .row-server-settings-root .server-tab-setting-container label {
+            font-size: 1.5rem;
+        }
+
+        #rcon-page-server .server-tab-settings .row-server-settings-root .btn-server-setting-write-container {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+            #rcon-page-server .server-tab-settings .row-server-settings-root .btn-server-setting-write-container #btn-server-setting-write {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+#rcon-page-server .server-tab-ftp #server-ftp-browser-container {
+    width: 100%;
+    height: calc(100% - 10rem);
+    overflow: auto;
+}
+
+    #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser {
+        width: 100%;
+        height: 100%;
+    }
+
+        #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser #server-ftp-browser-navbar {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser #server-ftp-browser-actions {
+            margin-bottom: 1.5rem;
+        }
+
+            #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser #server-ftp-browser-actions .btn {
+                margin-right: 1rem;
+            }
+
+                #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser #server-ftp-browser-actions .btn:hover {
+                    color: #405c77 !important;
+                }
+
+        #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser #server-ftp-browser-content {
+            font-size: 1.5rem;
+        }
+
+        #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser .ftp-nav {
+            color: var(--primary);
+        }
+
+        #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser .ftp-nav,
+        #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser .ftp-edit {
+            text-decoration: underline;
+        }
+
+            #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser .ftp-nav:hover,
+            #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser .ftp-edit:hover {
+                cursor: pointer;
+            }
+
+            #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser .ftp-nav i,
+            #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-browser .ftp-edit i {
+                text-decoration: none;
+            }
+
+    #rcon-page-server .server-tab-ftp #server-ftp-browser-container #server-ftp-editor {
+        width: 0;
+        height: 0;
+    }
+
+#rcon-page-server #stats-loader,
+#rcon-page-server #oxide-perms-loader {
+    width: 100%;
+    text-align: center;
+    margin-top: 8rem;
+}
+
+    #rcon-page-server #stats-loader span,
+    #rcon-page-server #oxide-perms-loader span {
+        font-size: 1.8rem;
+    }
+
+#rcon-page-bans .bans-content-col {
+    display: block;
+    max-height: 100%;
+    height: 100%;
+}
+
+    #rcon-page-bans .bans-content-col #bans-array-wrapper {
+        position: relative;
+        display: block;
+        height: 50%;
+        max-height: 50%;
+        width: 100%;
+        overflow: scroll;
+    }
+
+    #rcon-page-bans .bans-content-col .bans-filter {
+        position: relative;
+        display: block;
+        height: 4.5rem;
+        max-height: 4.5rem;
+        padding: 1rem 0 1rem 0;
+    }
+
+        #rcon-page-bans .bans-content-col .bans-filter #bans-array-filter {
+            float: right;
+        }
+
+            #rcon-page-bans .bans-content-col .bans-filter #bans-array-filter input {
+                margin: 0 0 0 2rem;
+            }
+
+            #rcon-page-bans .bans-content-col .bans-filter #bans-array-filter .form-control {
+                display: inline-block;
+                width: auto;
+            }
+
+    #rcon-page-bans .bans-content-col #bans-ip-header {
+        display: block;
+        height: 2.5rem;
+        max-height: 2.5rem;
+        margin: 2rem 0 2rem;
+    }
+
+        #rcon-page-bans .bans-content-col #bans-ip-header h3 {
+            float: left;
+        }
+
+        #rcon-page-bans .bans-content-col #bans-ip-header #btn-add-ip-bans {
+            float: left;
+            margin-left: 2rem;
+        }
+
+    #rcon-page-bans .bans-content-col #banned-ips-array-wrapper {
+        position: relative;
+        display: block;
+        height: calc(50% - 11rem);
+        max-height: calc(50% - 11rem);
+        width: 100%;
+        overflow: scroll;
+    }
+
+#rcon-page-settings .section-row-content #settings-form-submit {
+    margin-top: 2rem;
+}
+
+#rcon-page-settings .section-row-content #language-picker {
+    z-index: 1;
+}
+
+#rcon-page-settings .section-row-content .settings-content-col {
+    display: block;
+    height: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+    #rcon-page-settings .section-row-content .settings-content-col::-webkit-scrollbar {
+        display: none;
+    }
+
+    #rcon-page-settings .section-row-content .settings-content-col .ccm-entry {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        padding: .3rem 0 .5rem 0;
+    }
+
+        #rcon-page-settings .section-row-content .settings-content-col .ccm-entry .ccm-reorder {
+            display: flex;
+            flex-direction: column;
+            margin-right: .5rem;
+            cursor: pointer;
+        }
+
+            #rcon-page-settings .section-row-content .settings-content-col .ccm-entry .ccm-reorder i {
+                font-size: 1.2rem;
+            }
+
+            #rcon-page-settings .section-row-content .settings-content-col .ccm-entry .ccm-reorder .btn-ccm-reorder {
+                padding: 0;
+                border: none;
+            }
+
+        #rcon-page-settings .section-row-content .settings-content-col .ccm-entry button {
+            padding: .1rem .6rem;
+            margin-right: .5rem;
+            font-size: 1rem;
+        }
+
+            #rcon-page-settings .section-row-content .settings-content-col .ccm-entry button i {
+                margin: 0;
+            }
+
+    #rcon-page-settings .section-row-content .settings-content-col .settings-repression-notification-table th {
+        padding: 0 1rem .5rem 0;
+        font-weight: normal;
+    }
+
+    #rcon-page-settings .section-row-content .settings-content-col .settings-repression-notification-table tr {
+        border: none;
+    }
+
+    #rcon-page-settings .section-row-content .settings-content-col .settings-repression-notification-table td:not(:first-child) {
+        text-align: center;
+    }
+
+    #rcon-page-settings .section-row-content .settings-content-col .settings-group {
+        padding: 2rem 0 0 0;
+    }
+
+        #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-title {
+            text-align: right;
+            width: 100%;
+            font-size: 1.8rem;
+            border-bottom: #e9e9e9 1px solid;
+            margin-bottom: 1rem;
+        }
+
+        #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row {
+            display: flex;
+            flex-direction: row;
+        }
+
+            #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container {
+                display: inline-flex;
+                font-size: 1.3rem;
+                margin: 2rem 3.5rem 2rem 2rem;
+            }
+
+                #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter {
+                    position: relative;
+                }
+
+                    #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter::after {
+                        content: ' ';
+                        position: absolute;
+                        display: block;
+                        height: calc(100% - 3rem);
+                        width: 1px;
+                        top: 3rem;
+                        left: -2rem;
+                        background-color: #e9e9e9;
+                    }
+
+                    #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter .fa-question {
+                        display: inline;
+                        border: #e9e9e9 1px solid;
+                        font-size: 1.5rem !important;
+                        padding: 0.5rem 0.5rem;
+                    }
+
+                    #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter input {
+                        min-width: 200px;
+                        margin-bottom: 1rem;
+                    }
+
+                        #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter input[type="number"] {
+                            min-width: 0;
+                            width: 10rem;
+                            height: 2.6rem;
+                        }
+
+                        #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter input[type="checkbox"] {
+                            min-width: auto;
+                            margin-bottom: 0;
+                        }
+
+                        #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter input[type="radio"] {
+                            min-width: auto;
+                            margin-bottom: 0;
+                        }
+
+                    #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter textarea {
+                        width: 100%;
+                    }
+
+                    #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter .settings-parameter-helper-container {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: 2rem;
+                        text-transform: uppercase;
+                        font-size: 1.2rem;
+                        letter-spacing: 1px;
+                    }
+
+                        #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter .settings-parameter-helper-container i.setting-tooltip {
+                            font-size: 2rem;
+                            margin: 0 .5rem 0 -3rem;
+                            color: #2c3e50;
+                        }
+
+                        #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter .settings-parameter-helper-container .settings-parameter-helper {
+                            position: absolute;
+                            display: inline-block;
+                            width: 100%;
+                        }
+
+                            #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter .settings-parameter-helper-container .settings-parameter-helper .settings-parameter-helper-text {
+                                z-index: 1;
+                                position: absolute;
+                                display: inline-block;
+                                left: 0;
+                                font-size: 1.2rem;
+                                padding: .5rem 1rem .5rem 1rem;
+                                background-color: #2c3e50;
+                                color: white;
+                                transform: scale(0, 1);
+                                transform-origin: bottom left;
+                                transition: transform ease-out 250ms;
+                            }
+
+                                #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter .settings-parameter-helper-container .settings-parameter-helper .settings-parameter-helper-text a {
+                                    color: white;
+                                    text-decoration: underline;
+                                }
+
+                            #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter .settings-parameter-helper-container .settings-parameter-helper:hover {
+                                cursor: pointer;
+                            }
+
+                                #rcon-page-settings .section-row-content .settings-content-col .settings-group .settings-group-row .settings-parameter-container .settings-parameter .settings-parameter-helper-container .settings-parameter-helper:hover .settings-parameter-helper-text {
+                                    transform: scale(1, 1);
+                                }
+
+    #rcon-page-settings .section-row-content .settings-content-col .help-block {
+        font-size: 1.2rem;
+    }
+
+        #rcon-page-settings .section-row-content .settings-content-col .help-block ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+    #rcon-page-settings .section-row-content .settings-content-col .bad-language-dynamic-step {
+        font-size: 1.2rem;
+        padding: .3rem 0 .5rem 0;
+    }
+
+        #rcon-page-settings .section-row-content .settings-content-col .bad-language-dynamic-step button {
+            padding: .1rem .6rem;
+            margin-left: .3rem;
+            font-size: 1rem;
+        }
+
+    #rcon-page-settings .section-row-content .settings-content-col #settings-parameter-countryblock-container {
+        height: 7rem;
+        overflow: auto;
+    }
+
+#rcon-page-settings .section-row-content #container-rustadmin-bantypes-lock {
+    display: flex;
+}
+
+    #rcon-page-settings .section-row-content #container-rustadmin-bantypes-lock #settings-parameter-autoban-rustadmin-bantypes {
+        overflow: hidden;
+    }
+
+    #rcon-page-settings .section-row-content #container-rustadmin-bantypes-lock #btn-rustadmin-bantypes-lock {
+        width: 3.5rem;
+        max-width: 3.5rem;
+    }
+
+@media screen and (max-width: 992px) {
+    .rcon-page-settings .section-row-content {
+        padding: 0;
+        margin-top: -1rem;
+    }
+
+        .rcon-page-settings .section-row-content .settings-group {
+            padding: 2rem 0 0 1rem !important;
+        }
+}
+
+#rcon-page-loader {
+    z-index: 3;
+    text-align: center;
+    padding: 8rem 0;
+}
+
+    #rcon-page-loader #rcon-loader-info {
+        width: 100%;
+        font-size: 3rem;
+        color: #2c3e50;
+        padding: 2rem;
+    }
+
+    #rcon-page-loader #loader-proxy-container {
+        display: none;
+    }

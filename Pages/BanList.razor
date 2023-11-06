@@ -1,0 +1,34 @@
+@page "/banlist"
+
+<PageTitle>Блокировки</PageTitle>
+<RadzenRow Gap="5" RowGap="5">
+	<RadzenColumn Size="12">
+		<RadzenText Text="Блокировки" TextStyle="TextStyle.H4" TagName="TagName.H1" TextAlign="TextAlign.Center"></RadzenText>
+		<RadzenCard Style="margin-top: 10px; padding: 20px 40px 40px">
+			<RadzenDataGrid Data="@_banList" TItem="Ban" Style="border-radius: 6px" AllowAlternatingRows="true" FilterMode="FilterMode.Advanced" PageSize="18" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true" ColumnWidth="265px">
+				<Columns>
+					<RadzenDataGridColumn TItem="Ban" Property="Nick" TextAlign="TextAlign.Center" Title="НИК-НЕЙМ"></RadzenDataGridColumn>
+					<RadzenDataGridColumn TItem="Ban" Property="Reason" TextAlign="TextAlign.Center" Title="ПРИЧИНА"></RadzenDataGridColumn>
+					<RadzenDataGridColumn TItem="Ban" Property="Date" TextAlign="TextAlign.Center" Title="ДАТА БЛОКИРОВКИ"></RadzenDataGridColumn>
+					<RadzenDataGridColumn TItem="Ban" Property="Duration" TextAlign="TextAlign.Center" Title="ДЛИТЕЛЬНОСТЬ"></RadzenDataGridColumn>
+					<RadzenDataGridColumn TItem="Ban" Property="Price" TextAlign="TextAlign.Center" Title="СНЯТИЕ">
+						<Template Context="data">
+							<a href="https://vk.me/minjalidze" target="_blank">
+								<RadzenButton Text="@data.PriceText" ButtonStyle="ButtonStyle.Info" Size="ButtonSize.Small" Style="border-radius: 6px" />
+							</a>
+						</Template>
+					</RadzenDataGridColumn>
+				</Columns>
+			</RadzenDataGrid>
+		</RadzenCard>
+	</RadzenColumn>
+</RadzenRow>
+
+@code
+{
+	private List<Ban> _banList;
+	protected override void OnInitialized()
+	{
+		_banList = ServerController.BanList;
+	}
+}

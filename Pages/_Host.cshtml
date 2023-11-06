@@ -1,0 +1,35 @@
+@page "/"
+@using Microsoft.AspNetCore.Components.Web
+@namespace Xyrenth.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/material3-dark-base.css" rel="stylesheet" />
+    <link rel="icon" href="favicon.ico" />
+    <link href="css/site.css" rel="stylesheet" />
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            Возникла ошибка при работе сайта. Перезагрузите страницу.
+        </environment>
+        <environment include="Development">
+            Возникла ошибка при работе сайта. Перезагрузите страницу.
+        </environment>
+        <a href="" class="reload">Перезагрузить</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+</body>
+</html>

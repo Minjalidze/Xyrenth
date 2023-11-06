@@ -1,0 +1,51 @@
+@page "/"
+
+<PageTitle>Главная</PageTitle>
+<RadzenRow Gap="5" RowGap="5">
+    <RadzenColumn Size="12">
+        <RadzenText Text="Главная страница" TextStyle="TextStyle.H4" TagName="TagName.H1" TextAlign="TextAlign.Center"></RadzenText>
+        <RadzenCard Style="margin-top: 10px; padding: 20px 40px 40px">
+            <RadzenRow Gap="10">
+                @foreach (var server in serversCopy)
+                {
+                    <RadzenColumn Style="background-color: #2694F9; border-radius: 6px; width: 105%">
+                        <div align="center">
+                            <RadzenText Text="@server.Name" TextStyle="TextStyle.DisplayH5" TagName="TagName.Div" Style="margin-left: 5px; margin-top: 10px; color: #ffffff" TextAlign="TextAlign.Center"> </RadzenText>
+                            <RadzenText Text=@Online(server.Online) TextStyle="TextStyle.Subtitle1" Style="margin: -5px 5px 0;" TextAlign="TextAlign.Center"> </RadzenText>
+                            <RadzenProgressBar Value=@server.Online Style="border-radius: 6px; margin: 5px; height: 1.195rem" class="accordion"></RadzenProgressBar>
+                            <RadzenButton Click=@(e => Callback(server)) ButtonStyle="ButtonStyle.Success" Size="ButtonSize.Small" Text="Играть" Icon="play_circle_filled" Shade="Shade.Light" Style="border-radius: 6px; text-align: center; margin-bottom: 5px"></RadzenButton>
+                        </div>
+                    </RadzenColumn>
+                }
+            </RadzenRow>
+        </RadzenCard>
+    </RadzenColumn>
+</RadzenRow>
+
+@code {
+
+    string Online(int value) => $"Текущий онлайн: {value}";
+
+    static List<Server> serversCopy;
+    protected override void OnInitialized()
+    {
+        serversCopy = ServerController.ServerList;
+        base.OnInitialized();
+    }
+
+    async Task Callback(Server item)
+    {
+        await ClipboardService.CopyToClipboard(item.Address);
+        NotificationService.Notify(new NotificationMessage { Severity = NotificationSeverity.Success, Summary = item.Name, Detail = "IP-адрес сервера \nскопирован в буфер обмена." });
+        await DialogService.Confirm("Для начала игры необходимо скачать наш игровой клиент." +
+                                    "<br>Ссылка на скачивание клиента: <a href=\"https://xyrenth.ru/client\" target=\"_blank\">скачать</a>." +
+                                    "<br>- Перед запуском игры необходимо установить ник-нейм при помощи файла \"ChangeNick.exe\"." +
+                                    "<br>- Запуск игры производится путем запуска файла \"rust.exe\"." +
+                                    "<br>- Для подключения к серверу необходимо зайти во вкладку \"Play Game\" и 2 раза кликнуть по серверу." +
+
+                                    "<br><br><div align=\"center\">Распространенные проблемы:</div>" +
+                                    "<br>1) Бесконечный смайл: в папке с игрой находится папка \"FIXES\", а в ней находится папка \"- Смайлик\"<br>В этой папке Вы найдете файл \"readme.txt\" с инструкцией." +
+                                    "<br>2) Неверный ник: в папке с игрой находится папка \"FIXES\", а в ней находится папка \"- Incorrect Username\"<br>В этой папке Вы найдете файл \"info.txt\" с инструкцией.",
+	        "Как начать играть?");
+	}
+}

@@ -1,0 +1,167 @@
+@page "/manage"
+
+<PageTitle>Панель управления</PageTitle>
+<RadzenRow Gap="5" RowGap="5">
+    <RadzenColumn Size="12" Style="text-align: center">
+    @if (!isAuthorized)
+    {
+        <RadzenCard Variant="Variant.Flat" Class="rz-my-12 rz-mx-auto" Style="max-width: 420px; display: inline-flex; width: 750px">
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Center" Gap="1rem" Class="rz-p-4" Style="position: sticky; display: inline-flex; text-transform: none; width: 650px">
+                <RadzenStack Gap="0" Style="width: 350px">
+                    <RadzenText TextStyle="Radzen.Blazor.TextStyle.Overline" Style="font-family: 'Times New Roman'; font-size: 16px; margin-top: -8px; margin-bottom: 18px">ПАНЕЛЬ АВТОРИЗАЦИИ</RadzenText>
+                    <RadzenTextBox @bind-Value="@login" Placeholder="Название сервера..." AutoComplete="false" Style="font-family: Georgia; margin-bottom: 10px; width: 350px" />
+                    <RadzenPassword @bind-Value=@password Placeholder="Ключ авторизации..." AutoComplete="false" Style="font-family: Georgia; margin-bottom: 10px; width: 350px" />
+                    <RadzenButton Variant="Variant.Flat" Click=@(args => OnClick()) Text="Войти" ButtonStyle="ButtonStyle.Primary" Style="margin-top: 10px" />
+                </RadzenStack>
+            </RadzenStack>
+        </RadzenCard>
+    } else
+    {
+        <RadzenCard Variant="Variant.Flat" Class="rz-my-12 rz-mx-auto" Style="max-width: 420px; display: inline-flex; width: 750px">
+            <RadzenStack Orientation="Radzen.Orientation.Vertical" JustifyContent="Radzen.JustifyContent.Center" Gap="1rem" Class="rz-p-4" Style="position: sticky; display: inline-flex; text-transform: none; width: 650px">
+                <RadzenStack Gap="0" Style="width: 350px">
+                    <RadzenText Text="@serverState" TextStyle="Radzen.Blazor.TextStyle.Overline" Style="font-family: 'Times New Roman'; font-size: 16px; margin-top: -8px; margin-bottom: 18px"></RadzenText>
+                    <RadzenButton ButtonStyle="Radzen.ButtonStyle.Success" Icon="play_circle_filled" ButtonType="Radzen.ButtonType.Submit" Text="Запустить сервер" Click=@(args => Start())>
+                    </RadzenButton>
+                        <RadzenButton ButtonStyle="Radzen.ButtonStyle.Warning" Icon="autorenew" Text="Перезагрузить сервер" Style="margin-top: 10px; margin-bottom: 10px" Click=@(args => Restart())>
+                    </RadzenButton>
+                        <RadzenButton ButtonStyle="Radzen.ButtonStyle.Danger" Text="Выключить сервер" Icon="cancel" Click=@(args => Stop())>
+                    </RadzenButton>
+                </RadzenStack>
+            </RadzenStack>
+        </RadzenCard>
+        <RadzenCard Variant="Radzen.Variant.Filled" Class="rz-my-12 rz-mx-auto" Style="width: 750px; text-align: center">
+                <div id="console-content" style="display: block; border-radius: 12px; border: 4px solid #e0e0e9; text-align: left">
+                    @foreach (var rconString in rconStrings)
+                    {
+                        <div>
+                            <span class="text-secondary" style="text-align: left; margin-left: 10px">
+                                @rconString
+                            </span>
+                        </div>
+                    }
+                </div>
+                <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="Radzen.JustifyContent.Center" Gap="1rem" Class="rz-p-4" Style="position: sticky; display: inline-flex; text-transform: none; width: 720px">
+                    <RadzenTextBox @bind-Value="@command" Placeholder="Введите команду..." AutoComplete="false" Style="font-family: Georgia; width: 550px; text-align: left; border: 4px solid #88a6d2; border-radius: 12px" />
+                    <RadzenButton Variant="Variant.Flat" Click=@(args => SendCommand()) Text="Отправить команду" ButtonStyle="Radzen.ButtonStyle.Success" Style="width: 200px; margin-bottom: 10px" ButtonType="Radzen.ButtonType.Submit" />
+                </RadzenStack>
+        </RadzenCard>
+    }
+    </RadzenColumn>
+</RadzenRow>
+
+@code{
+    bool isAuthorized = false;
+
+    List<string> rconStrings = new List<string>();
+
+    string login;
+    string password;
+
+    string command;
+
+    string serverState = "Состояние сервера: выключен.";
+
+    SSHServer sshServer;
+    RCON rcon;
+
+    private void Start()
+    {
+        var workingFolder = $"/servers/{sshServer.Name}";
+        using (var client = new SshClient(sshServer.IP, "root", sshServer.Password))
+        {
+            client.Connect();
+
+            using (var command = client.CreateCommand($"cd {workingFolder} && bash SRV_START.sh"))
+            {
+                command.Execute();
+            }
+
+            client.Disconnect();
+        }
+        serverState = "Состояние сервера: включен.";
+        NotificationService.Notify(new NotificationMessage { Severity = NotificationSeverity.Success, Summary = "Управление сервером", Detail = "Сервер успешно включен." });
+    }
+    private void Restart() {
+        var workingFolder = $"/servers/{sshServer.Name}";
+        using (var client = new SshClient(sshServer.IP, "root", sshServer.Password))
+        {
+            client.Connect();
+
+            using (var command = client.CreateCommand($"cd {workingFolder} && bash SRV_RESTART.sh"))
+            {
+                command.Execute();
+            }
+
+            client.Disconnect();
+        }
+        serverState = "Состояние сервера: включен.";
+        NotificationService.Notify(new NotificationMessage { Severity = NotificationSeverity.Warning, Summary = "Управление сервером", Detail = "Сервер успешно перезагружен." });
+    }
+    private void Stop()
+    {
+        var workingFolder = $"/servers/{sshServer.Name}";
+        using (var client = new SshClient(sshServer.IP, "root", sshServer.Password))
+        {
+            client.Connect();
+
+            using (var command = client.CreateCommand($"cd {workingFolder} && bash SRV_STOP.sh"))
+            {
+                command.Execute();
+            }
+
+            client.Disconnect();
+        }
+        serverState = "Состояние сервера: выключен.";
+        NotificationService.Notify(new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Управление сервером", Detail = "Сервер успешно выключен." });
+    }
+
+    private void UpdateState()
+    {
+        string result = string.Empty;
+        using (var client = new SshClient(sshServer.IP, "root", sshServer.Password))
+        {
+            client.Connect();
+            using (var command = client.CreateCommand($"pgrep -f {sshServer.Name}"))
+            {
+                result = command.Execute();
+            }
+            client.Disconnect();
+        }
+        if (string.IsNullOrEmpty(result)) serverState = "Состояние сервера: выключен.";
+        else serverState = "Состояние сервера: включен.";
+    }
+    private async void OnClick() {
+        var ssh = SSHServer.Get(login, password);
+        if (ssh == null)
+        {
+            NotificationService.Notify(new NotificationMessage { Severity = NotificationSeverity.Error, Summary = "Авторизация", Detail = "Неправильный логин или ключ авторизации." });
+            return;
+        }
+        isAuthorized = true;
+        sshServer = ssh;
+
+        UpdateState();
+
+        try {
+            rcon = new RCON(IPAddress.Parse(sshServer.IP), ushort.Parse(sshServer.RconPort), sshServer.RconPassword);
+            await rcon.ConnectAsync();
+
+            rcon.OnPacketReceived += (packet =>
+            {
+                rconStrings.Add(packet.Body);
+            });
+        }
+        catch
+        {
+            rconStrings.Add("Возникла ошибка при подключении к RCON-сервера. Повторите попытку и убедитесь, что сервер запущен.");
+        }
+
+        await Task.Delay(-1);
+    }
+
+    private async void SendCommand()
+    {
+        await rcon.SendCommandAsync(command);
+    }
+}
